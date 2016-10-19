@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Parking</string>
+    <string name="choose">Add your vehicle</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_vehicle">Delete Vehicle</string>
+    <string name="addVehicle">Add vehicle</string>
+    <string name="enterVehicle">Enter vehicle name</string>
+    <string name="enterPlate">Enter plate</string>
+    <string name="add">Add</string>
+    <string name="zone1">700101</string>
+    <string name="zone2">700102</string>
+    <string name="zone3">700103</string>
+    <string name="zone4">700104</string>
+    <string name="zone5">700105</string>
+    <string name="zone6">700106</string>
+</resources>
