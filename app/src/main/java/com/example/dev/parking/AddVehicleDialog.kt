@@ -19,7 +19,6 @@ class AddVehicleDialog(context: Context, val activity: Main2Activity): Dialog(co
     var vehicleString: String = ""
     var plateString: String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.vehicle_dialog_layout)
@@ -28,8 +27,6 @@ class AddVehicleDialog(context: Context, val activity: Main2Activity): Dialog(co
         plateET = findViewById(R.id.ETEnterPlate) as EditText
         cancelBTN = findViewById(R.id.BTNCancelAdd) as Button
         addBTN = findViewById(R.id.BTNAddVehicleAdd) as Button
-
-
 
         cancelBTN?.onClick {
             this.dismiss()
