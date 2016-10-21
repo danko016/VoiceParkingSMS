@@ -1,7 +1,11 @@
 package com.example.dev.parking
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.speech.RecognizerIntent
 import android.support.v7.app.AppCompatActivity
 import android.telephony.SmsManager
 import android.util.Log
@@ -9,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.mcxiaoke.koi.ext.onClick
 import kotlinx.android.synthetic.main.activity_main2.*
+import java.util.*
 
 class Main2Activity() : AppCompatActivity() {
 
@@ -22,6 +27,67 @@ class Main2Activity() : AppCompatActivity() {
     var chosenVehicleText: String = ""
     var chosenPlateText: String = ""
 
+
+    private val VOICE_RECOGNITION_REQUEST_CODE = 1
+
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent){
+        if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Activity.RESULT_OK){
+            val result: ArrayList<String> = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            TVreconizedText.text = result[0]
+            Log.d("tag", "textView " + TVreconizedText.text)
+        }
+
+
+        try {
+            when(TVreconizedText.text.toString().toLowerCase()){
+                "zone 1" -> {
+                    prepareToSend()
+                    sendSMS (phoneZone1)
+                    BTNSendSMS?.setBackgroundColor(Color.GREEN)
+
+                }
+                "zone 2" -> {
+                    prepareToSend()
+                    sendSMS (phoneZone2)
+                    BTNSendSMSZone2?.setBackgroundColor(Color.GREEN)
+                }
+                "zone 3" -> {
+                    prepareToSend()
+                    sendSMS (phoneZone3)
+                    BTNSendSMSZone3?.setBackgroundColor(Color.GREEN)
+                }
+                "zone 4" -> {
+                    prepareToSend()
+                    sendSMS (phoneZone4)
+                    BTNSendSMSZone4?.setBackgroundColor(Color.GREEN)
+                }
+                "zone 5" -> {
+                    prepareToSend()
+                    sendSMS (phoneZone5)
+                    BTNSendSMSZone5?.setBackgroundColor(Color.GREEN)
+                }
+                "zone 6" -> {
+                    prepareToSend()
+                    sendSMS (phoneZone6)
+                    BTNSendSMSZone6?.setBackgroundColor(Color.GREEN)
+                }else ->  Toast.makeText(applicationContext, "Unexisting zone", Toast.LENGTH_SHORT).show()
+
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun startRecognition(){
+        val intent: Intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -32,6 +98,10 @@ class Main2Activity() : AppCompatActivity() {
         activityVehicleText = findViewById(R.id.TVGetVehicle) as TextView
         activityPlateText = findViewById(R.id.TVGetPlate) as TextView
 
+        recognitionBTN.onClick {
+            startRecognition()
+        }
+
         TVChooseVehicle.onClick {
             addVehicleDialog = AddVehicleDialog(this, this)
             addVehicleDialog?.show()
@@ -41,8 +111,6 @@ class Main2Activity() : AppCompatActivity() {
             saveVehicle()
             savePlate()
             sendSMS(phoneZone1)
-            BTNSendSMS?.setTextColor(Color.RED)
-
         }
 
         BTNSendSMSZone2?.onClick {
@@ -87,12 +155,28 @@ class Main2Activity() : AppCompatActivity() {
         }
     }
 
-    val phoneZone1: String = "700101"
-    val phoneZone2: String = "700102"
-    val phoneZone3: String = "700103"
-    val phoneZone4: String = "700104"
-    val phoneZone5: String = "700105"
-    val phoneZone6: String = "700106"
+    val phoneZone1: String = "098268804"
+    val phoneZone2: String = "098268804"
+    val phoneZone3: String = "098268804"
+    val phoneZone4: String = "098268804"
+    val phoneZone5: String = "098268804"
+    val phoneZone6: String = "098268804"
+
+    fun prepareToSend(){
+        saveVehicle()
+        savePlate ()
+        object : CountDownTimer(30000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                TVCount.text = ("Seconds remaining: " + millisUntilFinished / 1000)
+            }
+
+            override fun onFinish() {
+                TVCount.text =("done!")
+                BTNSendSMS?.setBackgroundColor(Color.RED)
+            }
+        }.start()
+    }
 
     fun sendSMS(number: String) {
         val message: String = chosenPlateText
@@ -104,6 +188,7 @@ class Main2Activity() : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 
     fun savePlate() {
         chosenPlateText = activityPlateText?.text.toString()
