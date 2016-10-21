@@ -30,9 +30,6 @@ class Main2Activity() : AppCompatActivity() {
 
     private val VOICE_RECOGNITION_REQUEST_CODE = 1
 
-
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent){
         if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Activity.RESULT_OK){
             val result: ArrayList<String> = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
@@ -40,14 +37,12 @@ class Main2Activity() : AppCompatActivity() {
             Log.d("tag", "textView " + TVreconizedText.text)
         }
 
-
         try {
             when(TVreconizedText.text.toString().toLowerCase()){
                 "zone 1" -> {
                     prepareToSend()
                     sendSMS (phoneZone1)
                     BTNSendSMS?.setBackgroundColor(Color.GREEN)
-
                 }
                 "zone 2" -> {
                     prepareToSend()
