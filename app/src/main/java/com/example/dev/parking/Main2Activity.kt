@@ -9,6 +9,7 @@ import android.speech.RecognizerIntent
 import android.support.v7.app.AppCompatActivity
 import android.telephony.SmsManager
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.mcxiaoke.koi.ext.onClick
@@ -30,54 +31,69 @@ class Main2Activity() : AppCompatActivity() {
 
     private val VOICE_RECOGNITION_REQUEST_CODE = 1
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent){
-        if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Activity.RESULT_OK){
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val result: ArrayList<String> = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
             TVreconizedText.text = result[0]
             Log.d("tag", "textView " + TVreconizedText.text)
         }
 
         try {
-            when(TVreconizedText.text.toString().toLowerCase()){
+            when (TVreconizedText.text.toString().toLowerCase()) {
                 "zone 1" -> {
                     prepareToSend()
-                    sendSMS (phoneZone1)
+                    sendSMS(phoneZone1, chosenPlateText)
                     BTNSendSMS?.setBackgroundColor(Color.GREEN)
+                    setTimer(BTNSendSMS)
                 }
+
+                "zone 1 30" -> {
+                    prepareToSend()
+                    sendSMS(phoneZone1, chosenPlateText + "#30")
+                    BTNSendSMSZone1Half?.setBackgroundColor(Color.GREEN)
+                    setTimer(BTNSendSMSZone1Half)
+                }
+
                 "zone 2" -> {
                     prepareToSend()
-                    sendSMS (phoneZone2)
+                    sendSMS(phoneZone2, chosenPlateText)
                     BTNSendSMSZone2?.setBackgroundColor(Color.GREEN)
+                    setTimerHalf(BTNSendSMSZone2)
                 }
                 "zone 3" -> {
                     prepareToSend()
-                    sendSMS (phoneZone3)
+                    sendSMS(phoneZone3, chosenPlateText)
                     BTNSendSMSZone3?.setBackgroundColor(Color.GREEN)
+                    setTimer(BTNSendSMSZone3)
                 }
                 "zone 4" -> {
                     prepareToSend()
-                    sendSMS (phoneZone4)
+                    sendSMS(phoneZone4, chosenPlateText)
                     BTNSendSMSZone4?.setBackgroundColor(Color.GREEN)
+                    setTimer(BTNSendSMSZone4)
                 }
                 "zone 5" -> {
                     prepareToSend()
-                    sendSMS (phoneZone5)
+                    sendSMS(phoneZone5, chosenPlateText)
                     BTNSendSMSZone5?.setBackgroundColor(Color.GREEN)
+                    setTimer(BTNSendSMSZone5)
                 }
                 "zone 6" -> {
                     prepareToSend()
-                    sendSMS (phoneZone6)
+                    sendSMS(phoneZone6, chosenPlateText)
                     BTNSendSMSZone6?.setBackgroundColor(Color.GREEN)
-                }else ->  Toast.makeText(applicationContext, "Unexisting zone", Toast.LENGTH_SHORT).show()
+                    setTimer(BTNSendSMSZone6)
+                }
+                else -> Toast.makeText(applicationContext, "Unexisting zone", Toast.LENGTH_SHORT).show()
 
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun startRecognition(){
+    fun startRecognition() {
         val intent: Intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE)
@@ -105,42 +121,51 @@ class Main2Activity() : AppCompatActivity() {
         BTNSendSMS?.onClick {
             saveVehicle()
             savePlate()
-            sendSMS(phoneZone1)
+            sendSMS(phoneZone1, chosenPlateText)
+            BTNSendSMS.setBackgroundColor(Color.GREEN)
+            setTimer(BTNSendSMS)
+        }
+
+        BTNSendSMSZone1Half?.onClick {
+            prepareToSend()
+            sendSMS(phoneZone1, chosenPlateText + "#30")
+            BTNSendSMSZone1Half.setBackgroundColor(Color.GREEN)
+            setTimerHalf(BTNSendSMSZone1Half)
         }
 
         BTNSendSMSZone2?.onClick {
-            saveVehicle()
-            savePlate()
-            sendSMS(phoneZone2)
-            BTNSendSMSZone2?.setTextColor(Color.RED)
+            prepareToSend()
+            sendSMS(phoneZone2, chosenPlateText)
+            BTNSendSMSZone2?.setBackgroundColor(Color.GREEN)
+            setTimer(BTNSendSMSZone2)
         }
 
         BTNSendSMSZone3?.onClick {
-            saveVehicle()
-            savePlate()
-            sendSMS(phoneZone3)
-            BTNSendSMSZone3?.setTextColor(Color.RED)
+            prepareToSend()
+            sendSMS(phoneZone3, chosenPlateText)
+            BTNSendSMSZone3?.setBackgroundColor(Color.GREEN)
+            setTimer(BTNSendSMSZone3)
         }
 
         BTNSendSMSZone4?.onClick {
-            saveVehicle()
-            savePlate()
-            sendSMS(phoneZone4)
-            BTNSendSMSZone4?.setTextColor(Color.RED)
+            prepareToSend()
+            sendSMS(phoneZone4, chosenPlateText)
+            BTNSendSMSZone4?.setBackgroundColor(Color.GREEN)
+            setTimer(BTNSendSMSZone4)
         }
 
         BTNSendSMSZone5?.onClick {
-            saveVehicle()
-            savePlate()
-            sendSMS(phoneZone5)
-            BTNSendSMSZone5?.setTextColor(Color.RED)
+            prepareToSend()
+            sendSMS(phoneZone5, chosenPlateText)
+            BTNSendSMSZone5?.setBackgroundColor(Color.GREEN)
+            setTimer(BTNSendSMSZone5)
         }
 
         BTNSendSMSZone6?.onClick {
-            saveVehicle()
-            savePlate()
-            sendSMS(phoneZone6)
-            BTNSendSMSZone6?.setTextColor(Color.RED)
+            prepareToSend()
+            sendSMS(phoneZone6, chosenPlateText)
+            BTNSendSMSZone6?.setBackgroundColor(Color.GREEN)
+            setTimer(BTNSendSMSZone6)
         }
 
         BTNdeleteVehicle?.onClick {
@@ -157,24 +182,42 @@ class Main2Activity() : AppCompatActivity() {
     val phoneZone5: String = "098268804"
     val phoneZone6: String = "098268804"
 
-    fun prepareToSend(){
+    fun prepareToSend() {
         saveVehicle()
-        savePlate ()
-        object : CountDownTimer(30000, 1000) {
+        savePlate()
+    }
+
+    fun setTimer(button: Button) {
+        object : CountDownTimer(6000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 TVCount.text = ("Seconds remaining: " + millisUntilFinished / 1000)
             }
 
             override fun onFinish() {
-                TVCount.text =("done!")
-                BTNSendSMS?.setBackgroundColor(Color.RED)
+                TVCount.text = ("Parking elapsed")
+                button.setBackgroundColor(Color.RED)
             }
+
         }.start()
     }
 
-    fun sendSMS(number: String) {
-        val message: String = chosenPlateText
+    fun setTimerHalf(button: Button) {
+        object : CountDownTimer(3000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                TVCount.text = ("Seconds remaining: " + millisUntilFinished / 1000)
+            }
+
+            override fun onFinish() {
+                TVCount.text = ("Parking elapsed")
+                button.setBackgroundColor(Color.RED)
+            }
+
+        }.start()
+    }
+
+    fun sendSMS(number: String, message: String) {
         try {
             val smsManager: SmsManager = SmsManager.getDefault()
             smsManager.sendTextMessage(number, null, message, null, null)
@@ -183,7 +226,6 @@ class Main2Activity() : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
 
     fun savePlate() {
         chosenPlateText = activityPlateText?.text.toString()
@@ -213,6 +255,11 @@ class Main2Activity() : AppCompatActivity() {
         valuePlate = prefsPlate.getString("text", chosenPlateText)
         val plate = prefsPlate.getString("name", "No name defined")
         TVGetPlate.text = plate
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }
 
