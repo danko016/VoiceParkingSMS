@@ -18,6 +18,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_marginTop="2sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -53,29 +54,34 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
 
                     <LinearLayout
                         android:id="@+id/LLSoundZ1"
-                        android:paddingRight="40dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingRight="40dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-smallcaps"
-                            android:textStyle="bold"
-                            android:text="Speech:" />
+                            android:text="Speech:"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Zone 1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Zone 1 30" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -92,8 +98,8 @@
                     <LinearLayout
                         android:id="@+id/LLVehPlate"
                         android:layout_width="wrap_content"
-                        android:layout_toRightOf="@id/LLSoundZ1"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/LLSoundZ1"
                         android:orientation="vertical">
 
                         <TextView
@@ -120,17 +126,17 @@
                     <LinearLayout
                         android:id="@+id/LLSoundZ4"
                         android:layout_width="wrap_content"
-                        android:paddingLeft="40dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/LLVehPlate"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingLeft="40dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-smallcaps"
-                            android:textStyle="bold"
-                            android:text="Speech:" />
+                            android:text="Speech:"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -153,35 +159,51 @@
 
                 <Button
                     android:id="@+id/recognitionBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/speech" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background"/>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="speech recognition" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/TVreconizedText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/TVreconizedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/TVCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/TVCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/RLBTN"
+                android:id="@+id/LLBTN"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="110sp"
                 android:layout_marginTop="5sp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/BTNSendSMS"
                     android:layout_width="0dp"
-                    android:layout_height="130sp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="2sp"
                     android:layout_marginRight="2sp"
                     android:layout_weight="1"
+                    android:textAlignment="center"
                     android:background="@drawable/roundbutton"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/zone1"
@@ -189,9 +211,24 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/BTNSendSMSZone1Half"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="2sp"
+                    android:layout_marginLeft="2sp"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginStart="2sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundbutton"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/zonehalf"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Button
                     android:id="@+id/BTNSendSMSZone2"
                     android:layout_width="0dp"
-                    android:layout_height="130sp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="2sp"
                     android:layout_marginLeft="2sp"
                     android:layout_marginRight="2sp"
@@ -207,7 +244,7 @@
                 <Button
                     android:id="@+id/BTNSendSMSZone3"
                     android:layout_width="0dp"
-                    android:layout_height="130sp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="2sp"
                     android:layout_marginStart="2sp"
                     android:layout_weight="1"
@@ -222,14 +259,14 @@
             <LinearLayout
                 android:id="@+id/LLBTNLineTwo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="110sp"
                 android:layout_marginTop="3sp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/BTNSendSMSZone4"
                     android:layout_width="0dp"
-                    android:layout_height="130sp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="2sp"
                     android:layout_marginRight="2sp"
                     android:layout_weight="1"
@@ -242,7 +279,7 @@
                 <Button
                     android:id="@+id/BTNSendSMSZone5"
                     android:layout_width="0dp"
-                    android:layout_height="130sp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="2sp"
                     android:layout_marginLeft="2sp"
                     android:layout_marginRight="2sp"
@@ -257,7 +294,7 @@
                 <Button
                     android:id="@+id/BTNSendSMSZone6"
                     android:layout_width="0dp"
-                    android:layout_height="130sp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="2sp"
                     android:layout_marginStart="2sp"
                     android:layout_weight="1"
