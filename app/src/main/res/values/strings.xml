@@ -7,10 +7,12 @@
     <string name="enterVehicle">Enter vehicle name</string>
     <string name="enterPlate">Enter plate</string>
     <string name="add">Add</string>
-    <string name="zone1">700101</string>
-    <string name="zone2">700102</string>
-    <string name="zone3">700103</string>
-    <string name="zone4">700104</string>
-    <string name="zone5">700105</string>
-    <string name="zone6">700106</string>
+    <string name="zone1">700101\n(6,00 kn)</string>
+    <string name="zonehalf">700101 &#189;\n(3,00 kn)</string>
+    <string name="zone2">700102\n(3,00 kn)</string>
+    <string name="zone3">700103\n(1,50 kn)</string>
+    <string name="zone4">700104\n(10,00 kn)</string>
+    <string name="zone5">700105\n(5,00 kn)</string>
+    <string name="zone6">700106\n(3,00 kn)</string>
+    <string name="speech">Speech recognition</string>
 </resources>
