@@ -14,5 +14,6 @@
     <string name="zone4">700104\n(10,00 kn)</string>
     <string name="zone5">700105\n(5,00 kn)</string>
     <string name="zone6">700106\n(3,00 kn)</string>
-    <string name="speech">Speech recognition</string>
+    <string name="speech">Press for speech recognition</string>
+    <string name="dialogTitle">Confirmation</string>
 </resources>
