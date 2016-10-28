@@ -34,7 +34,7 @@
                     android:id="@+id/TVChooseVehicle"
                     android:layout_width="match_parent"
                     android:layout_height="30sp"
-                    android:background="@color/button"
+                    android:background="@drawable/roundbutton"
                     android:fontFamily="sans-serif-smallcaps"
                     android:gravity="center"
                     android:text="@string/choose"
@@ -63,8 +63,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:orientation="vertical"
-                        android:paddingRight="40dp">
+                        android:layout_marginRight="80dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -127,9 +127,9 @@
                         android:id="@+id/LLSoundZ4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
                         android:layout_toRightOf="@id/LLVehPlate"
-                        android:orientation="vertical"
-                        android:paddingLeft="40dp">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
