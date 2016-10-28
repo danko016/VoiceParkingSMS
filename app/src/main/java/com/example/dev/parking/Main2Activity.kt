@@ -21,13 +21,13 @@ class Main2Activity() : AppCompatActivity() {
     var activityVehicleText: TextView? = null
     var activityPlateText: TextView? = null
     var addVehicleDialog: AddVehicleDialog? = null
+    var confirmDialog: ConfirmDialog? = null
 
     var valuePlate: String = ""
     var valueVehicle: String = ""
 
     var chosenVehicleText: String = ""
     var chosenPlateText: String = ""
-
 
     private val VOICE_RECOGNITION_REQUEST_CODE = 1
 
@@ -42,47 +42,33 @@ class Main2Activity() : AppCompatActivity() {
             when (TVreconizedText.text.toString().toLowerCase()) {
                 "zone 1" -> {
                     prepareToSend()
-                    sendSMS(phoneZone1, chosenPlateText)
-                    BTNSendSMS?.setBackgroundColor(Color.GREEN)
-                    setTimer(BTNSendSMS)
+                    BTNSendSMS?.setBackgroundColor(Color.BLUE)
                 }
 
-                "zone 1 30" -> {
+                "zone 1:30" -> {
                     prepareToSend()
-                    sendSMS(phoneZone1, chosenPlateText + "#30")
-                    BTNSendSMSZone1Half?.setBackgroundColor(Color.GREEN)
-                    setTimer(BTNSendSMSZone1Half)
+                    BTNSendSMSZone1Half?.setBackgroundColor(Color.BLUE)
                 }
 
                 "zone 2" -> {
                     prepareToSend()
-                    sendSMS(phoneZone2, chosenPlateText)
-                    BTNSendSMSZone2?.setBackgroundColor(Color.GREEN)
-                    setTimerHalf(BTNSendSMSZone2)
+                    BTNSendSMSZone2?.setBackgroundColor(Color.BLUE)
                 }
                 "zone 3" -> {
                     prepareToSend()
-                    sendSMS(phoneZone3, chosenPlateText)
-                    BTNSendSMSZone3?.setBackgroundColor(Color.GREEN)
-                    setTimer(BTNSendSMSZone3)
+                    BTNSendSMSZone3?.setBackgroundColor(Color.BLUE)
                 }
                 "zone 4" -> {
                     prepareToSend()
-                    sendSMS(phoneZone4, chosenPlateText)
-                    BTNSendSMSZone4?.setBackgroundColor(Color.GREEN)
-                    setTimer(BTNSendSMSZone4)
+                    BTNSendSMSZone4?.setBackgroundColor(Color.BLUE)
                 }
                 "zone 5" -> {
                     prepareToSend()
-                    sendSMS(phoneZone5, chosenPlateText)
-                    BTNSendSMSZone5?.setBackgroundColor(Color.GREEN)
-                    setTimer(BTNSendSMSZone5)
+                    BTNSendSMSZone5?.setBackgroundColor(Color.BLUE)
                 }
                 "zone 6" -> {
                     prepareToSend()
-                    sendSMS(phoneZone6, chosenPlateText)
-                    BTNSendSMSZone6?.setBackgroundColor(Color.GREEN)
-                    setTimer(BTNSendSMSZone6)
+                    BTNSendSMSZone6?.setBackgroundColor(Color.BLUE)
                 }
                 else -> Toast.makeText(applicationContext, "Unexisting zone", Toast.LENGTH_SHORT).show()
 
@@ -119,53 +105,38 @@ class Main2Activity() : AppCompatActivity() {
         }
 
         BTNSendSMS?.onClick {
-            saveVehicle()
-            savePlate()
-            sendSMS(phoneZone1, chosenPlateText)
-            BTNSendSMS.setBackgroundColor(Color.GREEN)
-            setTimer(BTNSendSMS)
+            prepareToSend()
+            BTNSendSMS?.setBackgroundColor(Color.BLUE)
         }
 
         BTNSendSMSZone1Half?.onClick {
             prepareToSend()
-            sendSMS(phoneZone1, chosenPlateText + "#30")
-            BTNSendSMSZone1Half.setBackgroundColor(Color.GREEN)
-            setTimerHalf(BTNSendSMSZone1Half)
+            BTNSendSMSZone1Half?.setBackgroundColor(Color.BLUE)
         }
 
         BTNSendSMSZone2?.onClick {
             prepareToSend()
-            sendSMS(phoneZone2, chosenPlateText)
-            BTNSendSMSZone2?.setBackgroundColor(Color.GREEN)
-            setTimer(BTNSendSMSZone2)
+            BTNSendSMSZone2?.setBackgroundColor(Color.BLUE)
         }
 
         BTNSendSMSZone3?.onClick {
             prepareToSend()
-            sendSMS(phoneZone3, chosenPlateText)
-            BTNSendSMSZone3?.setBackgroundColor(Color.GREEN)
-            setTimer(BTNSendSMSZone3)
+            BTNSendSMSZone3?.setBackgroundColor(Color.BLUE)
         }
 
         BTNSendSMSZone4?.onClick {
             prepareToSend()
-            sendSMS(phoneZone4, chosenPlateText)
-            BTNSendSMSZone4?.setBackgroundColor(Color.GREEN)
-            setTimer(BTNSendSMSZone4)
+            BTNSendSMSZone4?.setBackgroundColor(Color.BLUE)
         }
 
         BTNSendSMSZone5?.onClick {
             prepareToSend()
-            sendSMS(phoneZone5, chosenPlateText)
-            BTNSendSMSZone5?.setBackgroundColor(Color.GREEN)
-            setTimer(BTNSendSMSZone5)
+            BTNSendSMSZone5?.setBackgroundColor(Color.BLUE)
         }
 
         BTNSendSMSZone6?.onClick {
             prepareToSend()
-            sendSMS(phoneZone6, chosenPlateText)
-            BTNSendSMSZone6?.setBackgroundColor(Color.GREEN)
-            setTimer(BTNSendSMSZone6)
+            BTNSendSMSZone6?.setBackgroundColor(Color.BLUE)
         }
 
         BTNdeleteVehicle?.onClick {
@@ -185,6 +156,8 @@ class Main2Activity() : AppCompatActivity() {
     fun prepareToSend() {
         saveVehicle()
         savePlate()
+        confirmDialog = ConfirmDialog(this, this)
+        confirmDialog?.show()
     }
 
     fun setTimer(button: Button) {
@@ -216,6 +189,7 @@ class Main2Activity() : AppCompatActivity() {
 
         }.start()
     }
+
 
     fun sendSMS(number: String, message: String) {
         try {
