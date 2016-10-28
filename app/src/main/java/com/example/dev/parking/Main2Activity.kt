@@ -190,7 +190,6 @@ class Main2Activity() : AppCompatActivity() {
         }.start()
     }
 
-
     fun sendSMS(number: String, message: String) {
         try {
             val smsManager: SmsManager = SmsManager.getDefault()

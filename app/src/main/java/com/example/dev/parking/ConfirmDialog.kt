@@ -74,7 +74,7 @@ class ConfirmDialog(context: Context, val activity: Main2Activity) : Dialog(cont
             yesButton?.onClick {
                 activity.sendSMS(activity.phoneZone1, activity.chosenPlateText + "#30")
                 activity.BTNSendSMSZone1Half.setBackgroundColor(Color.GREEN)
-                activity.setTimer(activity.BTNSendSMSZone1Half)
+                activity.setTimerHalf(activity.BTNSendSMSZone1Half)
                 this.dismiss()
             }
         }
